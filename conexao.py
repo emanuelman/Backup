@@ -1,11 +1,12 @@
-# Importando do Paramiko:
+# Importando Bibliotecas:
 import paramiko
 import os
 
 # Dados de acesso
-address = '192.168.100.7' # IP do servidor
-username = 'newman' # Usuario de acesso
-password = 'newman' # Senha de acesso
+# OBS: No lugar dos '...' coleque:
+address = '...' # IP do servidor
+username = '...' # Usuario de acesso
+password = '...' # Senha de acesso
 
 # Criando a conexão SSH
 ssh = paramiko.SSHClient()
@@ -14,104 +15,76 @@ ssh.connect(hostname=address, username=username, password=password)
 sftp_client=ssh.open_sftp()
 
 # Função com os Comandos
-def Menu_Linguagens():
+def Backup():
 
     print(30 * "-")
 
     print("""
-|--Linguagens
+|--Deretorios
 |   |
-|   |--Go
+|   |--Personal
 |   |
-|   |--Java
+|   |--Localhost
 |   |
-|   |--Python
+|   |--Documents
+|   |
+|   |--Pictures
+|   |
+|   |--Videos
 |   |
           """)
 
-    print("1 --> Go")
-    print("2 --> Java")
-    print("3 --> Python")
-    print("4 --> Sair")
+    print("1 --> Personal")
+    print("2 --> Localhost")
+    print("3 --> Documents")
+    print("4 --> Pictures")
+    print("5 --> Videos")
+    print("6 --> Todos")
+    print("7 --> Sair")
 
     print(30 * "-")
 
 loop = True
 
 while loop:
-    Menu_Linguagens()
-    opcao = int(input("Selecione sua opção [1-4]: "))
+    Backup()
+    opcao = int(input("Selecione sua opção [1-7]: "))
 
-    if  opcao == 1:
-        # Executando...
-        print("versões da linguagem disponiveis para instalar:\n")
-        print("1 --> go1.18.6.windows-386.msi")
-        print("2 --> go1.19.1.windows-amd64.msi")
-        print("3 --> voltar\n")
+    if opcao == 1:
+        print("Transferindo Personal...\n")
+        sftp_client.get('/home/public/backup/Personal.zip','Personal.zip')
 
-        opcao_linguagem = int(input("Selecione sua opção [1-3]: "))
+    elif opcao_linguagem == 2:
+        print("Transferindo Localhost...\n")
+        sftp_client.get('/home/public/Backup/Localhost.zip','Localhost.zip')
 
-        if opcao_linguagem == 1:
-            sftp_client.get('/home/public/Linguagens/Go/go1.18.6.windows-386.msi','go1.18.6.windows-386.msi')
+    elif opcao_linguagem == 3:
+        print("Transferindo Documents...\n")
+        sftp_client.get('/home/public/Backup/Documents.zip','Documents.zip')
 
-        elif opcao_linguagem == 2:
-            sftp_client.get('/home/public/Linguagens/Go/go1.19.1.windows-amd64.msi','go1.19.1.windows-amd64.msi')
+    elif opcao_linguagem == 4:
+        print("Transferindo Pictures...\n")
+        sftp_client.get('/home/public/Backup/Pictures.zip','Pictures.zip')
 
-        elif opcao_linguagem == 3:
-            loop = True
+    elif opcao_linguagem == 5:
+        print("Transferindo Videos...\n")
+        sftp_client.get('/home/public/Backup/Videos.zip','Videos.zip')
 
-        else:
-            print("\nOpção incorreta. Tente novamente\n")
+    elif opcao_linguagem == 6:
+        print("Transferindo Tudo...\n")
+        sftp_client.get('/home/public/backup/Personal.zip','Personal.zip')
+        sftp_client.get('/home/public/Backup/Localhost.zip','Localhost.zip')
+        sftp_client.get('/home/public/Backup/Documents.zip','Documents.zip')
+        sftp_client.get('/home/public/Backup/Pictures.zip','Pictures.zip')
+        sftp_client.get('/home/public/Backup/Videos.zip','Videos.zip')
 
-    elif opcao == 2:
-        # Executando...
-        print("versões da linguagem disponiveis para instalar:\n")
-        print("1 --> JavaSetup8u341.exe")
-        print("2 --> jre-7u64-winodws-i586.exe")
-        print("3 --> voltar\n")
-
-        opcao_linguagem = int(input("Selecione sua opção [1-3]: "))
-
-        if opcao_linguagem == 1:
-            sftp_client.get('/home/public/Linguagens/Java/JavaSetup8u341.exe','JavaSetup8u341.exe')
-
-        elif opcao_linguagem == 2:
-            sftp_client.get('/home/public/Linguagens/Java/jre-7u64-winodws-i586.exe','jre-7u64-winodws-i586.exe')
-
-        elif opcao_linguagem == 3:
-            loop = True
-
-        else:
-            print("\nOpção incorreta. Tente novamente\n")
-
-    elif opcao == 3:
-        # Executando...
-        print("versões da linguagem disponiveis para instalar:\n")
-        print("1 --> python-3.10.7-amd64.exe")
-        print("2 --> python-3.9.6-amd64.exe")
-        print("3 --> voltar\n")
-
-        opcao_linguagem = int(input("Selecione sua opção [1-3]: "))
-
-        if opcao_linguagem == 1:
-            sftp_client.get('/home/public/Linguagens/Python/python-3.10.7-amd64.exe','python-3.10.7-amd64.exe')
-
-        elif opcao_linguagem == 2:
-            sftp_client.get('/home/public/Linguagens/Python/python-3.9.6-amd64.exe','python-3.9.6-amd64.exe')
-
-        elif opcao_linguagem == 3:
-            loop = True
-
-        else:
-            print("\nOpção incorreta. Tente novamente\n")
-
-    elif opcao == 4:
+    elif opcao == 7:
         loop=False
 
     else:
-        print('\nOpção incorreta. Tente novamente\n')
+        print("\nOpção incorreta. Tente novamente\n")
+        loop = True
 
 #Encerrando a conexão SSH
 ssh.close()
 os.remove("ancora.txt")
-
