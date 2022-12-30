@@ -4,9 +4,9 @@ import os
 
 # Dados de acesso
 # OBS: No lugar dos '...' coleque:
-address = '192.168.100.7' # IP do servidor
-username = 'newman' # Usuario de acesso
-password = 'newman' # Senha de acesso
+address = '...' # IP do servidor
+username = '...' # Usuario de acesso
+password = '...' # Senha de acesso
 
 # Criando a conexão SSH
 ssh = paramiko.SSHClient()
