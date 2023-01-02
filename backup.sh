@@ -7,6 +7,8 @@ Compactando os Diretórios...
 ----------------------------
 "
 sleep 1s
+#cd ~
+#mkdir Backup
 cd ~/Desktop
 zip Personal.zip -r Personal -6
 sudo mv Personal.zip ~/Backup
