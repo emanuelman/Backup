@@ -8,7 +8,6 @@ Compactando os Diretórios...
 ----------------------------
 "
 sleep 1s
-
 caminho=~/Backup
 if [ ! -d "$caminho" ]; then
     echo "O diretorio 'Backup' ainda não existe"
@@ -19,7 +18,6 @@ else
     echo "O diretorio 'Backup' já existe"
     #echo "Diretorio existe"
 fi
-
 cd ~/Desktop
 zip Personal.zip -r Personal -6
 sudo mv Personal.zip ~/Backup
