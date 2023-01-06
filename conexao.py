@@ -4,9 +4,16 @@ import os
 
 # Dados de acesso
 # OBS: No lugar dos '...' coleque:
-address = '...' # IP do servidor
-username = '...' # Usuario de acesso
-password = '...' # Senha de acesso
+address = '192.168.100.7' # IP do servidor
+username = 'newman' # Usuario de acesso
+password = 'newman' # Senha de acesso
+
+#variaveis para armazenar a ponte de diretorio do servidor
+server_personal="/home/newman/Backup/Personal.zip"
+server_localhost="/home/newman/Backup/Localhost.zip"
+server_documents="/home/newman/Backup/Documents.zip"
+server_pictures="/home/newman/Backup/Pictures.zip"
+server_videos="/home/newman/Backup/Videos.zip"
 
 # Criando a conexão SSH
 ssh = paramiko.SSHClient()
@@ -56,10 +63,10 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Personal.zip','Personal.zip')
+            sftp_client.get(server_personal,'Personal.zip')
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Personal.zip','/home/newman/Backup/Personal.zip')
+            sftp_client.put('Personal.zip',server_personal)
 
     elif opcao_arquivo == 2:
         print("1 --> Download")
@@ -67,10 +74,10 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Localhost.zip','Localhost.zip')
+            sftp_client.get(server_localhost,'Localhost.zip')
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Localhost.zip','/home/newman/Backup/Localhost.zip')
+            sftp_client.put('Localhost.zip',server_localhost)
 
     elif opcao_arquivo == 3:
         print("1 --> Download")
@@ -78,10 +85,10 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Documents.zip','Documents.zip')
+            sftp_client.get(server_documents,'Documents.zip')
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Documents.zip','/home/newman/Backup/Documents.zip')
+            sftp_client.put('Documents.zip',server_documents)
 
     elif opcao_arquivo == 4:
         print("1 --> Download")
@@ -89,10 +96,10 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Pictures.zip','Pictures.zip')
+            sftp_client.get(server_pictures,'Pictures.zip')
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Pictures.zip','/home/newman/Backup/Pictures.zip')
+            sftp_client.put('Pictures.zip',server_pictures)
 
     elif opcao_arquivo == 5:
         print("1 --> Download")
@@ -100,10 +107,10 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Videos.zip','Videos.zip')
+            sftp_client.get(server_videos,'Videos.zip')
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Videos.zip','/home/newman/Backup/Videos.zip')
+            sftp_client.put('Videos.zip',server_videos)
 
     elif opcao_arquivo == 6:
         print("1 --> Download")
@@ -111,19 +118,19 @@ while loop:
         opcao_transferir = int(input("Selecione sua opção [1-2]: "))
         if opcao_transferir == 1:
             print("downloading...\n")
-            sftp_client.get('/home/newman/Backup/Personal.zip','Persona.zip')
-            sftp_client.get('/home/newman/Backup/Localhost.zip','Localhost.zip')
-            sftp_client.get('/home/newman/Backup/Documents.zip','Documents.zip')
-            sftp_client.get('/home/newman/Backup/Pictures.zip','Pictures.zip')
-            sftp_client.get('/home/newman/Backup/Videos.zip','Videos.zip')
+            sftp_client.get(server_personal,'Personal.zip')
+            sftp_client.get(server_localhost,'Localhost.zip')
+            sftp_client.get(server_documents,'Documents.zip')
+            sftp_client.get(server_pictures,'Pictures.zip')
+            sftp_client.get(server_videos,'Videos.zip')
 
         elif opcao_transferir == 2:
             print("uploading...")
-            sftp_client.put('Personal.zip','/home/newman/Backup/Personal.zip')
-            sftp_client.put('Localhost.zip','/home/newman/Backup/Localhost.zip')
-            sftp_client.put('Documents.zip','/home/newman/Backup/Documents.zip')
-            sftp_client.put('Pictures.zip','/home/newman/Backup/Pictures.zip')
-            sftp_client.put('Videos.zip','/home/newman/Backup/Videos.zip')
+            sftp_client.put('Personal.zip',server_personal)
+            sftp_client.put('Localhost.zip',server_localhost)
+            sftp_client.put('Documents.zip',server_documents)
+            sftp_client.put('Pictures.zip',server_pictures)
+            sftp_client.put('Videos.zip',server_videos)
 
     elif opcao_arquivo == 7:
         loop=False
